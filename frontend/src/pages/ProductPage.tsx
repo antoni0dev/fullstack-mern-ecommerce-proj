@@ -1,13 +1,25 @@
-import { useParams, Link } from 'react-router-dom';
-import products from '../products';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { useNavigate } from 'react-router-dom';
+import { ProductType } from '../lib/@types';
+import { getProduct } from '../services/products';
 
 const ProductPage = () => {
+  const [product, setProduct] = useState<ProductType>();
   const navigate = useNavigate();
-  const { id: productId } = useParams();
-  const product = products.find((p) => p._id === productId);
+  const { productId } = useParams();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (productId) {
+        setProduct(await getProduct(productId));
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
 
   if (!product) return <h1>Product not found</h1>;
 
