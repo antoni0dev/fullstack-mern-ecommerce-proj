@@ -13,3 +13,6 @@ export const getErrorMessage = (error: any): string => {
 
   return "An unknwon error occured";
 };
+
+export const addDecimals = (num: number) =>
+  +(Math.round(num * 100) / 100).toFixed(2);
