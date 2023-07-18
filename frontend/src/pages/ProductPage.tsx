@@ -19,6 +19,8 @@ import { addItemToCart } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 
 const ProductPage = () => {
+  const [qty, setQty] = useState(1);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { productId } = useParams();
@@ -28,8 +30,6 @@ const ProductPage = () => {
     isError,
     error,
   } = useGetProductDetailsQuery(productId!);
-
-  const [qty, setQty] = useState(0);
 
   const addToCartHandler = () => {
     dispatch(addItemToCart({ ...product, qty }));
