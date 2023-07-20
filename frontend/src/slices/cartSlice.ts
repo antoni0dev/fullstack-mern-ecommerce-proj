@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Cart } from "../lib/@types";
+import { Cart, CartItem } from "../lib/@types";
 import { updateCart } from "../lib/utils";
 
 const existingCart = localStorage.getItem("cart");
@@ -19,27 +19,29 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItemToCart: (state, action) => {
-      const item = action.payload;
-      const existingItem = state.cartItems.find((x) => x._id === item._id);
+      const item: CartItem = action.payload;
+      const existingItemIndex = state.cartItems.findIndex(
+        (x) => x._id === item._id
+      );
 
-      // add if new, substitute if existing
-      if (existingItem) {
-        state.cartItems = state.cartItems.map((x) =>
-          x._id === item._id ? item : x
-        );
+      // substitute if exists, add if new
+      if (existingItemIndex >= 0) {
+        state.cartItems[existingItemIndex] = item;
       } else {
-        state.cartItems = [...state.cartItems, item];
+        state.cartItems.push(item);
       }
 
-      return updateCart(state);
+      updateCart(state);
     },
     removeItemFromCart: (state, action) => {
       const id = action.payload;
-      state.cartItems = state.cartItems.filter((item) =>
-        item._id !== id ? item : null
-      );
+      const index = state.cartItems.findIndex((x) => x._id === id);
 
-      return updateCart(state);
+      if (index >= 0) {
+        state.cartItems.splice(index, 1);
+      }
+
+      updateCart(state);
     },
     clearCart: (state) => {
       state.cartItems = [];
