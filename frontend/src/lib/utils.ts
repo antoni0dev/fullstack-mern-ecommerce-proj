@@ -1,9 +1,5 @@
 import { Cart } from "./@types";
 
-const isServerError = (error: any) => {
-  return error && typeof error.message === "string";
-};
-
 export const getErrorMessage = (error: any): string => {
   // error object from RTK Query
   if (error.data && typeof error.data.message === "string") {
