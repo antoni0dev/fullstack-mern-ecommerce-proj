@@ -3,10 +3,13 @@ import App from "../App";
 import HomePage from "../pages/HomePage";
 import ProductPage from "../pages/ProductPage";
 import CartPage from "../pages/CartPage";
+import LoginPage from "../pages/LoginPage";
+import { PATHS } from "./constants";
+import RegisterPage from "../pages/RegisterPage";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: PATHS.home,
     element: <App />,
     children: [
       {
@@ -14,12 +17,20 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "product/:productId",
+        path: PATHS.product,
         element: <ProductPage />,
       },
       {
-        path: "cart",
+        path: PATHS.cart,
         element: <CartPage />,
+      },
+      {
+        path: PATHS.login,
+        element: <LoginPage />,
+      },
+      {
+        path: PATHS.register,
+        element: <RegisterPage />,
       },
     ],
   },

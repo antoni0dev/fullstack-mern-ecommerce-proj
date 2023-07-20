@@ -22,3 +22,9 @@ export interface Cart {
   shippingPrice: number;
   taxPrice: number;
 }
+
+export interface UserInfo {
+  email: string;
+  isAdmin: boolean;
+  name: string;
+}

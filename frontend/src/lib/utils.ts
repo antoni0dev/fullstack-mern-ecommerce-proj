@@ -5,7 +5,13 @@ const isServerError = (error: any) => {
 };
 
 export const getErrorMessage = (error: any): string => {
-  if (isServerError(error)) {
+  // error object from RTK Query
+  if (error.data && typeof error.data.message === "string") {
+    return error.data.message;
+  }
+
+  // error object from other sources
+  if (error.message) {
     return error.message;
   }
 
@@ -13,7 +19,7 @@ export const getErrorMessage = (error: any): string => {
     return error.error;
   }
 
-  return "An unknwon error occured";
+  return "An unknown error occurred";
 };
 
 export const addDecimals = (num: number) =>
