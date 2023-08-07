@@ -17,6 +17,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { addItemToCart } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
+import { PATHS } from "../lib/constants";
 
 const ProductPage = () => {
   const [qty, setQty] = useState(1);
@@ -33,7 +34,7 @@ const ProductPage = () => {
 
   const addToCartHandler = () => {
     dispatch(addItemToCart({ ...product, qty }));
-    navigate("/cart");
+    navigate(PATHS.cart);
   };
 
   return (

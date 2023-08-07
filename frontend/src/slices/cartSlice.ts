@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Cart, CartItem } from "../lib/@types";
 import { updateCart } from "../lib/utils";
+import { CartField } from "../lib/constants";
 
 const existingCart = localStorage.getItem("cart");
 
@@ -8,6 +9,8 @@ const initialState: Cart = existingCart
   ? JSON.parse(existingCart)
   : {
       cartItems: [],
+      shippingAddress: {},
+      paymentMethod: "",
       itemsPrice: 0,
       shippingPrice: 0,
       taxPrice: 0,
@@ -43,16 +46,52 @@ const cartSlice = createSlice({
 
       updateCart(state);
     },
-    clearCart: (state) => {
-      state.cartItems = [];
-      state.itemsPrice = 0;
-      state.shippingPrice = 0;
-      state.taxPrice = 0;
-      state.totalPrice = 0;
+    clearField: (state, action) => {
+      switch (action.payload) {
+        case CartField.CartItems: {
+          state.cartItems = [];
+          break;
+        }
+        case CartField.ShippingAddress: {
+          state.shippingAddress = {};
+          break;
+        }
+        case CartField.PaymentMethod: {
+          state.paymentMethod = "";
+          break;
+        }
+        case CartField.All: {
+          state.cartItems = [];
+          state.shippingAddress = {};
+          state.paymentMethod = "";
+          state.itemsPrice = 0;
+          state.shippingPrice = 0;
+          state.taxPrice = 0;
+          state.totalPrice = 0;
+          break;
+        }
+        default:
+          break;
+      }
+      return updateCart(state);
+    },
+    saveShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload;
+      return updateCart(state);
+    },
+    savePaymentMethod: (state, action) => {
+      console.log(action.payload);
+      state.paymentMethod = action.payload;
+      return updateCart(state);
     },
   },
 });
 
-export const { addItemToCart, removeItemFromCart, clearCart } =
-  cartSlice.actions;
+export const {
+  addItemToCart,
+  removeItemFromCart,
+  saveShippingAddress,
+  savePaymentMethod,
+  clearField,
+} = cartSlice.actions;
 export default cartSlice.reducer;

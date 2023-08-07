@@ -7,10 +7,10 @@ import { RootState } from "../store";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import Loader from "./Loader";
 import { clearCredentials } from "../slices/authSlice";
-import { clearCart } from "../slices/cartSlice";
 import { getErrorMessage } from "../lib/utils";
 import { toast } from "react-toastify";
-import { PATHS } from "../lib/constants";
+import { CartField, PATHS } from "../lib/constants";
+import { clearField } from "../slices/cartSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Header = () => {
     try {
       await logout({});
       dispatch(clearCredentials());
-      dispatch(clearCart());
+      dispatch(clearField(CartField.All));
     } catch (e) {
       const errorMessage = getErrorMessage(e);
       toast.error(errorMessage);

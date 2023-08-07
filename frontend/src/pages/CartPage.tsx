@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Row,
   Col,
@@ -7,14 +7,15 @@ import {
   Form,
   Button,
   Card,
-} from "react-bootstrap";
-import { FaTrash } from "react-icons/fa";
-import Message from "../components/Message";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
-import { addItemToCart, removeItemFromCart } from "../slices/cartSlice";
-import { CartItem } from "../lib/@types";
-import { ChangeEvent } from "react";
+} from 'react-bootstrap';
+import { FaTrash } from 'react-icons/fa';
+import Message from '../components/Message';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { addItemToCart, removeItemFromCart } from '../slices/cartSlice';
+import { CartItem } from '../lib/@types';
+import { ChangeEvent } from 'react';
+import { PATHS } from '../lib/constants';
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -38,16 +39,16 @@ const CartPage = () => {
     };
 
   // handle item removal from cart state
-  const removeFromCartHandler = (id: string) => (e: any) => {
+  const removeFromCartHandler = (id: string) => {
     dispatch(removeItemFromCart(id));
   };
 
-  const checkoutHandler = () => navigate("/login?redirect=/shipping");
+  const checkoutHandler = () => navigate(PATHS.shipping);
 
   return (
     <Row>
       <Col md={8}>
-        <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>
+        <h1 style={{ marginBottom: '20px' }}>Shopping Cart</h1>
         <ListGroup variant='flush'>
           {cartItems.map((item) => (
             <ListGroup.Item key={item._id}>
@@ -76,7 +77,7 @@ const CartPage = () => {
                   <Button
                     type='button'
                     variant='white'
-                    onClick={removeFromCartHandler(item._id)}
+                    onClick={() => removeFromCartHandler(item._id)}
                   >
                     <FaTrash />
                   </Button>

@@ -1,11 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import HomePage from "../pages/HomePage";
-import ProductPage from "../pages/ProductPage";
-import CartPage from "../pages/CartPage";
-import LoginPage from "../pages/LoginPage";
 import { PATHS } from "./constants";
-import RegisterPage from "../pages/RegisterPage";
+import App from "../App";
+import {
+  HomePage,
+  ProductPage,
+  CartPage,
+  LoginPage,
+  RegisterPage,
+  ShippingPage,
+  OrderPage,
+  PaymentPage,
+  PlaceOrderPage,
+  ProfilePage,
+} from "../pages/index";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +38,27 @@ export const router = createBrowserRouter([
       {
         path: PATHS.register,
         element: <RegisterPage />,
+      },
+
+      {
+        path: PATHS.shipping,
+        element: <ShippingPage />,
+      },
+      {
+        path: PATHS.payment,
+        element: <PaymentPage />,
+      },
+      {
+        path: PATHS.placeOrder,
+        element: <PlaceOrderPage />,
+      },
+      {
+        path: PATHS.order,
+        element: <OrderPage />,
+      },
+      {
+        path: PATHS.profile,
+        element: <ProfilePage />,
       },
     ],
   },

@@ -11,12 +11,53 @@ export interface ProductType {
   numReviews: number;
 }
 
+export interface OrderItemType {
+  name: string;
+  qty: number;
+  image: string;
+  price: number;
+  product: string;
+}
+
+export interface PaymentResult {
+  id?: string;
+  status?: string;
+  update_time?: string;
+  email_address?: string;
+}
+
+export interface OrderType {
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  isDelivered: boolean;
+  isPaid: boolean;
+  itemsPrice: number;
+  orderItems: OrderItem[];
+  paymentMethod: string;
+  shippingAddress: ShippingAddress;
+  shippingPrice: number;
+  taxPrice: number;
+  totalPrice: number;
+  deliveredAt: string;
+  paidAt: string;
+  user: UserInfo;
+  __v: number; // This is the version key from mongoose
+}
+
 export interface CartItem extends ProductType {
   qty: number;
 }
 
 export interface Cart {
   cartItems: CartItem[];
+  shippingAddress: {
+    country?: string;
+    city?: string;
+    streetAddress?: string;
+    postalCode?: string;
+  };
+  paymentMethod: string;
   totalPrice: number;
   itemsPrice: number;
   shippingPrice: number;
@@ -24,7 +65,23 @@ export interface Cart {
 }
 
 export interface UserInfo {
+  _id: string;
   email: string;
   isAdmin: boolean;
   name: string;
+}
+
+// Paypal Types
+
+export interface SetLoadingStatusAction {
+  type: 'setLoadingStatus';
+  value: {
+    state: SCRIPT_LOADING_STATE;
+    message: string;
+  };
+}
+
+export interface ResetOptionsAction {
+  type: 'resetOptions';
+  value: ReactPayPalScriptOptions;
 }

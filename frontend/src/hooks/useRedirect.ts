@@ -8,22 +8,53 @@ const useRedirect = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { userInfo } = useSelector((state: RootState) => state.auth);
+  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
+  const { shippingAddress, paymentMethod } = useSelector(
+    (state: RootState) => state.cart
+  );
+
   const [isLoading, setIsLoading] = useState(true);
 
-  // If the authentication check is an asynchronous operation (i.e. Firebase or other), this might result in a flickering loading state. If that's the case, I must adjust the logic to account for async operations.
-
   useEffect(() => {
+    // Redirects unauthenticated users trying to access non-public routes to the login page
     if (!userInfo && !PUBLIC_PATHS.includes(location.pathname)) {
-      navigate(PATHS.login);
+      navigate(PATHS.login, { replace: true });
     }
 
+    // Redirects authenticated users trying to access public routes (like login) to the home page
     if (userInfo && PUBLIC_PATHS.includes(location.pathname)) {
-      navigate(PATHS.home);
+      navigate(PATHS.home, { replace: true });
+    }
+
+    // Redirects users to payment page if they have already filled in the shipping address and are on the shipping page
+    if (
+      location.pathname === PATHS.shipping &&
+      Object.keys(shippingAddress).length !== 0
+    ) {
+      navigate(PATHS.payment);
+    }
+
+    // If on the payment page:
+    if (location.pathname === PATHS.payment) {
+      // Redirects users to the shipping page if they have not filled in the shipping address
+      if (Object.keys(shippingAddress).length === 0) {
+        navigate(PATHS.shipping, { replace: true });
+      }
+
+      // Redirects users to place order page if they have already selected a payment method
+      if (paymentMethod) {
+        navigate(PATHS.placeOrder);
+      }
+    }
+
+    // Redirects users to the payment page from the place order page if they haven't selected a payment method
+    if (location.pathname === PATHS.placeOrder && !paymentMethod) {
+      navigate(PATHS.payment, { replace: true });
     }
 
     setIsLoading(false);
-  }, [userInfo, location, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo, location]);
 
   return isLoading;
 };
