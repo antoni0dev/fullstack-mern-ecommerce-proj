@@ -1,6 +1,6 @@
-import { createBrowserRouter } from "react-router-dom";
-import { PATHS } from "./constants";
-import App from "../App";
+import { createBrowserRouter } from 'react-router-dom';
+import { PATHS } from './constants';
+import App from '../App';
 import {
   HomePage,
   ProductPage,
@@ -12,7 +12,12 @@ import {
   PaymentPage,
   PlaceOrderPage,
   ProfilePage,
-} from "../pages/index";
+  OrderListPage,
+  UserListPage,
+  UserEditPage,
+  ProductListPage,
+  ProductEditPage,
+} from '../pages/index';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +64,26 @@ export const router = createBrowserRouter([
       {
         path: PATHS.profile,
         element: <ProfilePage />,
+      },
+      {
+        path: PATHS.orderList,
+        element: <OrderListPage />,
+      },
+      {
+        path: PATHS.productList,
+        element: <ProductListPage />,
+      },
+      {
+        path: PATHS.userList,
+        element: <UserListPage />,
+      },
+      {
+        path: PATHS.editProduct,
+        element: <ProductEditPage />,
+      },
+      {
+        path: PATHS.editUser,
+        element: <UserEditPage />,
       },
     ],
   },

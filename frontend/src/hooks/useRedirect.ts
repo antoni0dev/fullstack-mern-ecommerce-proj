@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { PATHS, PUBLIC_PATHS } from "../lib/constants";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { useState, useEffect } from 'react';
+import { ADMIN_ROUTES, PATHS, PUBLIC_PATHS } from '../lib/constants';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const useRedirect = () => {
   const navigate = useNavigate();
@@ -26,10 +26,19 @@ const useRedirect = () => {
       navigate(PATHS.home, { replace: true });
     }
 
+    // Redirects authenticated users that are not admins to access admin routes
+    if (
+      userInfo &&
+      !userInfo.isAdmin &&
+      ADMIN_ROUTES.includes(location.pathname)
+    ) {
+      navigate(PATHS.home, { replace: true });
+    }
+
     // Redirects users to payment page if they have already filled in the shipping address and are on the shipping page
     if (
-      location.pathname === PATHS.shipping &&
-      Object.keys(shippingAddress).length !== 0
+      Object.keys(shippingAddress).length !== 0 &&
+      location.pathname === PATHS.shipping
     ) {
       navigate(PATHS.payment);
     }
@@ -48,7 +57,7 @@ const useRedirect = () => {
     }
 
     // Redirects users to the payment page from the place order page if they haven't selected a payment method
-    if (location.pathname === PATHS.placeOrder && !paymentMethod) {
+    if (!paymentMethod && location.pathname === PATHS.placeOrder) {
       navigate(PATHS.payment, { replace: true });
     }
 

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Row,
   Col,
@@ -8,16 +8,16 @@ import {
   Card,
   Button,
   Form,
-} from "react-bootstrap";
-import Rating from "../components/Rating";
-import { useNavigate } from "react-router-dom";
-import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
-import { getErrorMessage } from "../lib/utils";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { addItemToCart } from "../slices/cartSlice";
-import { useDispatch } from "react-redux";
-import { PATHS } from "../lib/constants";
+} from 'react-bootstrap';
+import Rating from '../components/Rating';
+import { useNavigate } from 'react-router-dom';
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
+import { getErrorMessage } from '../lib/utils';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { addItemToCart } from '../slices/cartSlice';
+import { useDispatch } from 'react-redux';
+import { PATHS } from '../lib/constants';
 
 const ProductPage = () => {
   const [qty, setQty] = useState(1);
@@ -82,7 +82,7 @@ const ProductPage = () => {
                     <Row>
                       <Col>Status:</Col>
                       <Col>
-                        {product.countInStock > 0 ? "In Stock" : "Out of stock"}
+                        {product.countInStock > 0 ? 'In Stock' : 'Out of stock'}
                       </Col>
                     </Row>
                   </ListGroup.Item>

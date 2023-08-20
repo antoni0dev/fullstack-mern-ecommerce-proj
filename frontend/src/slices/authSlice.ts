@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { UserInfo } from '../lib/@types';
+import { RootState } from '../store';
 
 // login set credentials to set the user in local storage
 // logout
@@ -28,6 +29,8 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const selectUserInfo = (state: RootState) => state.auth.userInfo;
 
 export const { setCredentials, clearCredentials } = authSlice.actions;
 export default authSlice.reducer;

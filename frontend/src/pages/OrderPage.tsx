@@ -3,18 +3,30 @@ import { Link, useParams } from 'react-router-dom';
 import { useGetOrderQuery } from '../slices/ordersApiSlice';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { OnApproveActions } from '@paypal/paypal-js/types/components/buttons';
+import { toast } from 'react-toastify';
 import {
   usePayOrderMutation,
   useGetPaypalClientIdQuery,
+  useDeliverOrderMutation,
 } from '../slices/ordersApiSlice';
-import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getErrorMessage } from '../lib/utils';
-import { Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
+import {
+  Button,
+  Card,
+  Col,
+  Image,
+  ListGroup,
+  ListGroupItem,
+  Row,
+} from 'react-bootstrap';
 import { ResetOptionsAction, SetLoadingStatusAction } from '../lib/@types';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { selectUserInfo } from '../slices/authSlice';
 
 const OrderPage = () => {
+  const userInfo = useSelector(selectUserInfo);
   const { orderId } = useParams();
   const {
     data: order,
@@ -31,6 +43,8 @@ const OrderPage = () => {
     isLoading: isLoadingPaypal,
     error: errorPaypal,
   } = useGetPaypalClientIdQuery({});
+  const [deliverOrder, { isLoading: isLoadingDeliver }] =
+    useDeliverOrderMutation();
 
   // trigger the paypal script
   useEffect(() => {
@@ -97,6 +111,15 @@ const OrderPage = () => {
         },
       ],
     });
+  };
+
+  const deliverOrderHandler = async (orderId: string) => {
+    try {
+      await deliverOrder(orderId);
+      refetch();
+    } catch (err) {
+      toast.error(getErrorMessage(err));
+    }
   };
 
   return isLoading ? (
@@ -209,7 +232,18 @@ const OrderPage = () => {
                     )}
                   </ListGroup.Item>
                 )}
-                {/* MARK AS DELIVERED PLACEHOLDER */}
+                {isLoadingDeliver && <Loader />}
+                {userInfo?.isAdmin && order.isPaid && !order.isDelivered && (
+                  <ListGroupItem>
+                    <Button
+                      type='button'
+                      className='btn btn-block'
+                      onClick={() => deliverOrder(orderId || '')}
+                    >
+                      Mark as Delivered
+                    </Button>
+                  </ListGroupItem>
+                )}
               </ListGroup>
             </Card>
           </Col>

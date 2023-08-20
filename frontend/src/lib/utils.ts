@@ -1,8 +1,8 @@
-import { Cart } from "./@types";
+import { Cart } from './@types';
 
 export const getErrorMessage = (error: any): string => {
   // error object from RTK Query
-  if (error.data && typeof error.data.message === "string") {
+  if (error.data && typeof error.data.message === 'string') {
     return error.data.message;
   }
 
@@ -15,7 +15,7 @@ export const getErrorMessage = (error: any): string => {
     return error.error;
   }
 
-  return "An unknown error occurred";
+  return 'An unknown error occurred';
 };
 
 export const addDecimals = (num: number) =>
@@ -40,5 +40,5 @@ export const updateCart = (state: Cart) => {
     state.taxPrice
   ).toFixed();
 
-  localStorage.setItem("cart", JSON.stringify(state));
+  localStorage.setItem('cart', JSON.stringify(state));
 };

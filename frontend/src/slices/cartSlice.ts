@@ -1,16 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Cart, CartItem } from "../lib/@types";
-import { updateCart } from "../lib/utils";
-import { CartField } from "../lib/constants";
+import { createSlice } from '@reduxjs/toolkit';
+import { Cart, CartItem } from '../lib/@types';
+import { updateCart } from '../lib/utils';
+import { CartField } from '../lib/constants';
 
-const existingCart = localStorage.getItem("cart");
+const existingCart = localStorage.getItem('cart');
 
 const initialState: Cart = existingCart
   ? JSON.parse(existingCart)
   : {
       cartItems: [],
       shippingAddress: {},
-      paymentMethod: "",
+      paymentMethod: '',
       itemsPrice: 0,
       shippingPrice: 0,
       taxPrice: 0,
@@ -18,7 +18,7 @@ const initialState: Cart = existingCart
     };
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
     addItemToCart: (state, action) => {
@@ -57,13 +57,13 @@ const cartSlice = createSlice({
           break;
         }
         case CartField.PaymentMethod: {
-          state.paymentMethod = "";
+          state.paymentMethod = '';
           break;
         }
         case CartField.All: {
           state.cartItems = [];
           state.shippingAddress = {};
-          state.paymentMethod = "";
+          state.paymentMethod = '';
           state.itemsPrice = 0;
           state.shippingPrice = 0;
           state.taxPrice = 0;

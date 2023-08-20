@@ -1,9 +1,9 @@
-import { Row, Col } from "react-bootstrap";
-import Product from "../components/Product";
-import { useGetProductsQuery } from "../slices/productsApiSlice";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { getErrorMessage } from "../lib/utils";
+import { Row, Col } from 'react-bootstrap';
+import Product from '../components/Product';
+import { useGetProductsQuery } from '../slices/productsApiSlice';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { getErrorMessage } from '../lib/utils';
 
 const HomePage = () => {
   const { data: products, isError, error, isLoading } = useGetProductsQuery();
