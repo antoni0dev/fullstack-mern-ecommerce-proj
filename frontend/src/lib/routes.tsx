@@ -21,11 +21,19 @@ import {
 
 export const router = createBrowserRouter([
   {
-    path: PATHS.home,
     element: <App />,
+    path: PATHS.root,
     children: [
       {
+        element: <HomePage />,
         index: true,
+      },
+      {
+        path: PATHS.products,
+        element: <HomePage />,
+      },
+      {
+        path: PATHS.search,
         element: <HomePage />,
       },
       {

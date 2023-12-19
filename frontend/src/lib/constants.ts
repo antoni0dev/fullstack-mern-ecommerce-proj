@@ -6,7 +6,8 @@ export const PAYPAL_URL = '/api/config/paypal';
 export const UPLOADS_URL = '/api/upload';
 
 export const PATHS = {
-  home: '/',
+  root: '/',
+  products: '/page/:pageNumber',
   cart: '/cart',
   shipping: '/shipping',
   login: '/login',
@@ -21,6 +22,7 @@ export const PATHS = {
   productList: '/product-list',
   editProduct: '/edit-product/:productId',
   editUser: '/edit-user/:userId',
+  search: '/search/:keyword/page?/:pageNumber?',
 };
 
 export const PUBLIC_PATHS = [PATHS.login, PATHS.register];

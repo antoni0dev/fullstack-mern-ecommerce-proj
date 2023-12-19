@@ -9,8 +9,8 @@ import {
   useGetPaypalClientIdQuery,
   useDeliverOrderMutation,
 } from '../slices/ordersApiSlice';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import Loader from '../components/UI/Loader';
+import Message from '../components/UI/Message';
 import { getErrorMessage } from '../lib/utils';
 import {
   Button,
@@ -238,7 +238,7 @@ const OrderPage = () => {
                     <Button
                       type='button'
                       className='btn btn-block'
-                      onClick={() => deliverOrder(orderId || '')}
+                      onClick={() => deliverOrderHandler(orderId || '')}
                     >
                       Mark as Delivered
                     </Button>

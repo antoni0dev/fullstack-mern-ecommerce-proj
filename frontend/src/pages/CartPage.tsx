@@ -9,10 +9,13 @@ import {
   Card,
 } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
-import Message from '../components/Message';
+import Message from '../components/UI/Message';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { addItemToCart, removeItemFromCart } from '../slices/cartSlice';
+import {
+  addItemToCart,
+  removeItemFromCart,
+  selectCart,
+} from '../slices/cartSlice';
 import { CartItem } from '../lib/@types';
 import { ChangeEvent } from 'react';
 import { PATHS } from '../lib/constants';
@@ -20,9 +23,8 @@ import { PATHS } from '../lib/constants';
 const CartPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { cartItems } = useSelector((state: RootState) => state.cart);
+  const { cartItems } = useSelector(selectCart);
 
-  // in case there's nothing in the cart
   if (cartItems.length === 0) {
     return (
       <Message>

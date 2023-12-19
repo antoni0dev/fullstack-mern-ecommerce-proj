@@ -1,12 +1,12 @@
-import { Form, Button, Col } from "react-bootstrap";
-import FormContainer from "../components/FormContainer";
-import CheckoutSteps from "../components/CheckoutSteps";
-import { useForm, Controller } from "react-hook-form";
-import Loader from "../components/Loader";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { savePaymentMethod } from "../slices/cartSlice";
-import { PATHS } from "../lib/constants";
+import { Form, Button, Col } from 'react-bootstrap';
+import FormContainer from '../components/UI/FormContainer';
+import CheckoutSteps from '../components/UI/CheckoutSteps';
+import { useForm, Controller } from 'react-hook-form';
+import Loader from '../components/UI/Loader';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { savePaymentMethod } from '../slices/cartSlice';
+import { PATHS } from '../lib/constants';
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const PaymentPage = () => {
     formState: { isSubmitting, isValid },
   } = useForm({
     defaultValues: {
-      paymentMethod: "Paypal",
+      paymentMethod: 'Paypal',
     },
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const onSubmit = handleSubmit(async ({ paymentMethod }) => {
@@ -70,7 +70,7 @@ const PaymentPage = () => {
           </Col>
         </Form.Group>
         <Button type='submit' disabled={!isValid} variant='primary'>
-          {isSubmitting ? <Loader /> : "Continue"}
+          {isSubmitting ? <Loader /> : 'Continue'}
         </Button>
       </Form>
     </FormContainer>

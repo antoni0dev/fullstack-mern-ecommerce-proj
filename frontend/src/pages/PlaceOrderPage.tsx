@@ -1,22 +1,21 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useCreateOrderMutation } from "../slices/ordersApiSlice";
-import { clearField } from "../slices/cartSlice";
-import { toast } from "react-toastify";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import { RootState } from "../store";
-import CheckoutSteps from "../components/CheckoutSteps";
-import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { CartField, PATHS } from "../lib/constants";
-import { getErrorMessage } from "../lib/utils";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useCreateOrderMutation } from '../slices/ordersApiSlice';
+import { clearField, selectCart } from '../slices/cartSlice';
+import { toast } from 'react-toastify';
+import Message from '../components/UI/Message';
+import Loader from '../components/UI/Loader';
+import CheckoutSteps from '../components/UI/CheckoutSteps';
+import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { CartField, PATHS } from '../lib/constants';
+import { getErrorMessage } from '../lib/utils';
 
 const PlaceOrderPage = () => {
   const navigate = useNavigate();
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
-  const cart = useSelector((state: RootState) => state.cart);
+  const cart = useSelector(selectCart);
   const dispatch = useDispatch();
 
   const handleEditShipping = () => {
@@ -61,10 +60,10 @@ const PlaceOrderPage = () => {
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
-                <strong>Address:</strong> {cart.shippingAddress.country},{" "}
-                {cart.shippingAddress.city},{" "}
-                {cart.shippingAddress.streetAddress},{" "}
-                {cart.shippingAddress.postalCode}{" "}
+                <strong>Address:</strong> {cart.shippingAddress.country},{' '}
+                {cart.shippingAddress.city},{' '}
+                {cart.shippingAddress.streetAddress},{' '}
+                {cart.shippingAddress.postalCode}{' '}
                 <Button variant='link' onClick={handleEditShipping}>
                   Edit
                 </Button>
@@ -75,7 +74,11 @@ const PlaceOrderPage = () => {
               <h2>Payment Method:</h2>
               <strong>Method: </strong>
               {cart.paymentMethod}
-              <Button variant='link' onClick={handleEditPaymentMethod}>
+              <Button
+                style={{ alignSelf: 'baseline' }}
+                variant='link'
+                onClick={handleEditPaymentMethod}
+              >
                 Edit
               </Button>
             </ListGroup.Item>
@@ -108,8 +111,8 @@ const PlaceOrderPage = () => {
                 </>
               ) : (
                 <Message>
-                  Your cart is empty. Go back{" "}
-                  <Link to={PATHS.home}>shopping</Link>
+                  Your cart is empty. Go back{' '}
+                  <Link to={PATHS.root}>shopping</Link>
                 </Message>
               )}
             </ListGroup.Item>
@@ -141,7 +144,7 @@ const PlaceOrderPage = () => {
                   <Col>
                     $
                     {cart.shippingPrice === 0
-                      ? cart.shippingPrice + " (FREE SHIPPING)"
+                      ? cart.shippingPrice + ' (FREE SHIPPING)'
                       : cart.shippingPrice}
                   </Col>
                 </Row>
@@ -165,7 +168,7 @@ const PlaceOrderPage = () => {
                   disabled={!cart.cartItems.length}
                   onClick={handlePlaceOrder}
                 >
-                  {isLoading ? <Loader /> : "Place Order"}
+                  {isLoading ? <Loader /> : 'Place Order'}
                 </Button>
               </ListGroup.Item>
             </ListGroup>

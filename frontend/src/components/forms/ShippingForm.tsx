@@ -1,14 +1,14 @@
-import FormContainer from "../FormContainer";
-import { Button, Form } from "react-bootstrap";
-import { useForm, Controller } from "react-hook-form";
-import { shippingSchema, Shipping } from "../../lib/models/shippingSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { saveShippingAddress } from "../../slices/cartSlice";
-import { RootState } from "../../store";
-import CheckoutSteps from "../CheckoutSteps";
+import FormContainer from '../UI/FormContainer';
+import { Button, Form } from 'react-bootstrap';
+import { useForm, Controller } from 'react-hook-form';
+import { shippingSchema, Shipping } from '../../lib/models/shippingSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { saveShippingAddress } from '../../slices/cartSlice';
+import { RootState } from '../../store';
+import CheckoutSteps from '../UI/CheckoutSteps';
 
 const ShippingForm = () => {
   const dispatch = useDispatch();
@@ -22,17 +22,17 @@ const ShippingForm = () => {
   } = useForm<Shipping>({
     resolver: zodResolver(shippingSchema),
     defaultValues: {
-      country: address.country || "",
-      city: address.city || "",
-      streetAddress: address.streetAddress || "",
-      postalCode: address.postalCode || "",
+      country: address.country || '',
+      city: address.city || '',
+      streetAddress: address.streetAddress || '',
+      postalCode: address.postalCode || '',
     },
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const submitHandler = handleSubmit(async (address) => {
     dispatch(saveShippingAddress(address));
-    navigate("/payment", { replace: true });
+    navigate('/payment', { replace: true });
   });
 
   return (

@@ -1,3 +1,9 @@
+export interface ProductsResponse {
+  products: ProductType[];
+  page: number;
+  pages: number;
+}
+
 export interface ProductType {
   _id: string;
   name: string;
@@ -9,7 +15,16 @@ export interface ProductType {
   countInStock: number;
   rating: number;
   numReviews: number;
+  reviews?: Review[];
 }
+
+type Review = {
+  _id: number | string;
+  name: string;
+  rating: number;
+  createdAt: string;
+  comment: string;
+};
 
 export interface OrderItemType {
   name: string;

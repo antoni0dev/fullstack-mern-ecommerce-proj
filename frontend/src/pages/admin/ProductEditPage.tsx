@@ -5,9 +5,9 @@ import {
   useUpdateProductMutation,
   useUploadProductImageMutation,
 } from '../../slices/productsApiSlice';
-import FormContainer from '../../components/FormContainer';
-import Loader from '../../components/Loader';
-import Message from '../../components/Message';
+import FormContainer from '../../components/UI/FormContainer';
+import Loader from '../../components/UI/Loader';
+import Message from '../../components/UI/Message';
 import { getErrorMessage } from '../../lib/utils';
 import { Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';

@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { Nav } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { PATHS } from "../lib/constants";
+import { FC } from 'react';
+import { Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { PATHS } from '../../lib/constants';
 
 interface CheckoutStepsProps {
   step1: boolean;
@@ -15,10 +15,10 @@ const stepsMapping: {
   path: string;
   name: string;
 }[] = [
-  { step: "step1", path: PATHS.login, name: "Sign In" },
-  { step: "step2", path: PATHS.shipping, name: "Shipping" },
-  { step: "step3", path: PATHS.payment, name: "Payment" },
-  { step: "step4", path: PATHS.placeOrder, name: "Checkout" },
+  { step: 'step1', path: PATHS.login, name: 'Sign In' },
+  { step: 'step2', path: PATHS.shipping, name: 'Shipping' },
+  { step: 'step3', path: PATHS.payment, name: 'Payment' },
+  { step: 'step4', path: PATHS.placeOrder, name: 'Checkout' },
 ];
 
 const CheckoutSteps: FC<CheckoutStepsProps> = ({
@@ -36,7 +36,7 @@ const CheckoutSteps: FC<CheckoutStepsProps> = ({
           {stepsProps[step] ? (
             <LinkContainer to={path}>
               <Nav.Link>
-                <p style={{ fontWeight: "bold" }}>{name}</p>
+                <p style={{ fontWeight: 'bold' }}>{name}</p>
               </Nav.Link>
             </LinkContainer>
           ) : (

@@ -21,7 +21,7 @@ export const getErrorMessage = (error: any): string => {
 export const addDecimals = (num: number) =>
   +(Math.round(num * 100) / 100).toFixed(2);
 
-export const updateCart = (state: Cart) => {
+export const updateStoredCart = (state: Cart) => {
   // calculate the price of all items in the cart
   state.itemsPrice = addDecimals(
     state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)

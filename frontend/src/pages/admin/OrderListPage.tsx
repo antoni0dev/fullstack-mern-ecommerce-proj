@@ -1,6 +1,6 @@
 import { Button, Table } from 'react-bootstrap';
-import Loader from '../../components/Loader';
-import Message from '../../components/Message';
+import Loader from '../../components/UI/Loader';
+import Message from '../../components/UI/Message';
 import { getErrorMessage } from '../../lib/utils';
 import { useGetOrdersQuery } from '../../slices/ordersApiSlice';
 import { OrderType } from '../../lib/@types';

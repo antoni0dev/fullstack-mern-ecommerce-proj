@@ -2,13 +2,11 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { UserInfo } from '../lib/@types';
 import { RootState } from '../store';
 
-// login set credentials to set the user in local storage
-// logout
-
 interface AuthState {
   userInfo: UserInfo | null;
 }
 
+// TODO: what's a better way to handle user session than saving it in local storage?
 const userInfoFromStorage = localStorage.getItem('userInfo');
 
 const initialState: AuthState = {
@@ -31,6 +29,6 @@ const authSlice = createSlice({
 });
 
 export const selectUserInfo = (state: RootState) => state.auth.userInfo;
-
 export const { setCredentials, clearCredentials } = authSlice.actions;
+
 export default authSlice.reducer;

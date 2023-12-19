@@ -1,12 +1,19 @@
 import { apiSlice } from './apiSlice';
-import { ProductType } from '../lib/@types';
+import { ProductType, ProductsResponse } from '../lib/@types';
 import { PRODUCTS_URL, UPLOADS_URL } from '../lib/constants';
 
 const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query<ProductType[], void>({
-      query: () => ({
+    getProducts: builder.query<
+      ProductsResponse,
+      { pageNumber?: number; keyword?: string }
+    >({
+      query: ({ keyword, pageNumber }) => ({
         url: PRODUCTS_URL,
+        params: {
+          pageNumber,
+          keyword,
+        },
       }),
       providesTags: ['Product'],
       keepUnusedDataFor: 5,
@@ -16,12 +23,15 @@ const productsApiSlice = apiSlice.injectEndpoints({
         url: `${PRODUCTS_URL}/${productId}`,
       }),
     }),
+    getTopProducts: builder.query<ProductType[], undefined>({
+      query: () => `${PRODUCTS_URL}/top`,
+      keepUnusedDataFor: 5,
+    }),
     createProduct: builder.mutation({
       query: () => ({
         url: PRODUCTS_URL,
         method: 'POST',
       }),
-      // the invalidate option is specifying that products should be removed from the cache. That way we get fresh data each time we create a product
       invalidatesTags: ['Product'],
     }),
     updateProduct: builder.mutation({
@@ -45,14 +55,24 @@ const productsApiSlice = apiSlice.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+    createReview: builder.mutation({
+      query: (data) => ({
+        url: `${PRODUCTS_URL}/${data.productId}/reviews`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Product'],
+    }),
   }),
 });
 
 export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
+  useGetTopProductsQuery,
   useCreateProductMutation,
   useUpdateProductMutation,
   useUploadProductImageMutation,
   useDeleteProductMutation,
+  useCreateReviewMutation,
 } = productsApiSlice;

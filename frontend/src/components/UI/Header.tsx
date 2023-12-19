@@ -3,21 +3,18 @@ import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
 import logo from '/images/logo.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
-import { useLogoutMutation } from '../slices/usersApiSlice';
+import { useLogoutMutation } from '../../slices/usersApiSlice';
 import Loader from './Loader';
-import { clearCredentials } from '../slices/authSlice';
-import { getErrorMessage } from '../lib/utils';
+import { clearCredentials, selectUserInfo } from '../../slices/authSlice';
+import { getErrorMessage } from '../../lib/utils';
 import { toast } from 'react-toastify';
-import { CartField, PATHS } from '../lib/constants';
-import { clearField } from '../slices/cartSlice';
+import { CartField, PATHS } from '../../lib/constants';
+import { clearField, selectCart } from '../../slices/cartSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
-
-  const { cartItems } = useSelector((state: RootState) => state.cart);
-  const { userInfo } = useSelector((state: RootState) => state.auth);
-
+  const { cartItems } = useSelector(selectCart);
+  const userInfo = useSelector(selectUserInfo);
   const [logout, { isLoading }] = useLogoutMutation();
 
   const logoutHandler = async () => {

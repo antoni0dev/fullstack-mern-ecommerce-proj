@@ -1,6 +1,6 @@
 import { Button, Col, Row, Table } from 'react-bootstrap';
-import Loader from '../../components/Loader';
-import Message from '../../components/Message';
+import Loader from '../../components/UI/Loader';
+import Message from '../../components/UI/Message';
 import { toast } from 'react-toastify';
 import { getErrorMessage } from '../../lib/utils';
 import { FaCheck, FaEdit, FaTimes, FaTrash } from 'react-icons/fa';
@@ -8,10 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import {
   useGetUsersQuery,
   useDeleteUserMutation,
-  useUpdateUserMutation,
 } from '../../slices/usersApiSlice';
-import { UserInfo } from '../../lib/@types';
-import { PATHS } from '../../lib/constants';
 
 const UserListPage = () => {
   const { data: users, isLoading, error, refetch } = useGetUsersQuery();

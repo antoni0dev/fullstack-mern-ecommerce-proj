@@ -1,7 +1,7 @@
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Controller, useForm } from 'react-hook-form';
-import FormContainer from '../FormContainer';
-import Loader from '../Loader';
+import FormContainer from '../UI/FormContainer';
+import Loader from '../UI/Loader';
 import {
   registrationSchema,
   Register,

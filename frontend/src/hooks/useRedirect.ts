@@ -3,17 +3,15 @@ import { ADMIN_ROUTES, PATHS, PUBLIC_PATHS } from '../lib/constants';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
+import { selectCart } from '../slices/cartSlice';
 
 const useRedirect = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { shippingAddress, paymentMethod } = useSelector(selectCart);
+  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
   const navigate = useNavigate();
   const location = useLocation();
-
-  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
-  const { shippingAddress, paymentMethod } = useSelector(
-    (state: RootState) => state.cart
-  );
-
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Redirects unauthenticated users trying to access non-public routes to the login page
@@ -23,7 +21,7 @@ const useRedirect = () => {
 
     // Redirects authenticated users trying to access public routes (like login) to the home page
     if (userInfo && PUBLIC_PATHS.includes(location.pathname)) {
-      navigate(PATHS.home, { replace: true });
+      navigate(PATHS.root, { replace: true });
     }
 
     // Redirects authenticated users that are not admins to access admin routes
@@ -32,7 +30,7 @@ const useRedirect = () => {
       !userInfo.isAdmin &&
       ADMIN_ROUTES.includes(location.pathname)
     ) {
-      navigate(PATHS.home, { replace: true });
+      navigate(PATHS.root, { replace: true });
     }
 
     // Redirects users to payment page if they have already filled in the shipping address and are on the shipping page
@@ -43,7 +41,6 @@ const useRedirect = () => {
       navigate(PATHS.payment);
     }
 
-    // If on the payment page:
     if (location.pathname === PATHS.payment) {
       // Redirects users to the shipping page if they have not filled in the shipping address
       if (Object.keys(shippingAddress).length === 0) {
@@ -62,7 +59,6 @@ const useRedirect = () => {
     }
 
     setIsLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, location]);
 
   return isLoading;

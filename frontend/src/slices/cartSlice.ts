@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Cart, CartItem } from '../lib/@types';
-import { updateCart } from '../lib/utils';
+import { updateStoredCart } from '../lib/utils';
 import { CartField } from '../lib/constants';
+import { RootState } from '../store';
 
+// TODO: what's a better way to handle user session than saving it in local storage?
 const existingCart = localStorage.getItem('cart');
 
 const initialState: Cart = existingCart
@@ -34,7 +36,7 @@ const cartSlice = createSlice({
         state.cartItems.push(item);
       }
 
-      updateCart(state);
+      updateStoredCart(state);
     },
     removeItemFromCart: (state, action) => {
       const id = action.payload;
@@ -44,7 +46,7 @@ const cartSlice = createSlice({
         state.cartItems.splice(index, 1);
       }
 
-      updateCart(state);
+      updateStoredCart(state);
     },
     clearField: (state, action) => {
       switch (action.payload) {
@@ -73,19 +75,21 @@ const cartSlice = createSlice({
         default:
           break;
       }
-      return updateCart(state);
+      return updateStoredCart(state);
     },
     saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
-      return updateCart(state);
+      return updateStoredCart(state);
     },
     savePaymentMethod: (state, action) => {
       console.log(action.payload);
       state.paymentMethod = action.payload;
-      return updateCart(state);
+      return updateStoredCart(state);
     },
   },
 });
+
+export const selectCart = (state: RootState) => state.cart;
 
 export const {
   addItemToCart,

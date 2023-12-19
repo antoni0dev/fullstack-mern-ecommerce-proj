@@ -1,6 +1,6 @@
 import { Button, Col, Row, Table } from 'react-bootstrap';
-import Loader from '../../components/Loader';
-import Message from '../../components/Message';
+import Loader from '../../components/UI/Loader';
+import Message from '../../components/UI/Message';
 import { toast } from 'react-toastify';
 import { getErrorMessage } from '../../lib/utils';
 import {
@@ -10,9 +10,17 @@ import {
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDeleteProductMutation } from '../../slices/productsApiSlice';
+import { useParams } from 'react-router-dom';
 
 const ProductListPage = () => {
-  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const { pageNumber = 1 } = useParams();
+
+  const {
+    data: { products = [] } = {},
+    isLoading,
+    error,
+    refetch,
+  } = useGetProductsQuery({ pageNumber: Number(pageNumber) });
 
   const [deleteProduct, { isLoading: isDeleteProductLoading }] =
     useDeleteProductMutation();
@@ -31,10 +39,11 @@ const ProductListPage = () => {
     }
   };
 
-  const deleteProductHandler = async (productId: string) => {
+  const handleDeleteProduct = async (productId: string) => {
     try {
       await deleteProduct(productId).unwrap();
       refetch();
+      toast.success('Product deleted!');
     } catch (err) {
       toast.error(getErrorMessage(err));
     }
@@ -74,7 +83,7 @@ const ProductListPage = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.map((product) => (
+          {products.map((product) => (
             <tr key={product._id}>
               <td>{product._id}</td>
               <td>{product.name}</td>
@@ -90,7 +99,7 @@ const ProductListPage = () => {
                 <Button
                   variant='danger'
                   className='btn-sm'
-                  onClick={() => deleteProductHandler(product._id)}
+                  onClick={() => handleDeleteProduct(product._id)}
                 >
                   {isDeleteProductLoading ? (
                     <Loader />
