@@ -22,5 +22,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </HelmetProvider>
       </PayPalScriptProvider>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

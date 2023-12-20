@@ -34,19 +34,19 @@ const PaymentPage = () => {
       <h1>Payment Method</h1>
       <Form onSubmit={onSubmit}>
         <Form.Group>
-          <Form.Label as='legend'>Select Method</Form.Label>
+          <Form.Label as="legend">Select Method</Form.Label>
           <Col>
             <Controller
-              name='paymentMethod'
+              name="paymentMethod"
               control={control}
               render={({ field }) => (
                 <Form.Check
                   {...field}
-                  value='PayPal'
-                  className='my-2'
-                  type='radio'
-                  label='PayPal'
-                  id='paypal'
+                  value="PayPal"
+                  className="my-2"
+                  type="radio"
+                  label="PayPal"
+                  id="paypal"
                   checked
                 />
               )}
@@ -54,22 +54,22 @@ const PaymentPage = () => {
           </Col>
           <Col>
             <Controller
-              name='paymentMethod'
+              name="paymentMethod"
               control={control}
               render={({ field }) => (
                 <Form.Check
                   {...field}
-                  value='Credit Card'
-                  className='my-2'
-                  type='radio'
-                  label='Credit Card'
-                  id='creditCard'
+                  value="Credit Card"
+                  className="my-2"
+                  type="radio"
+                  label="Credit Card"
+                  id="creditCard"
                 />
               )}
             />
           </Col>
         </Form.Group>
-        <Button type='submit' disabled={!isValid} variant='primary'>
+        <Button type="submit" disabled={!isValid} variant="primary">
           {isSubmitting ? <Loader /> : 'Continue'}
         </Button>
       </Form>

@@ -26,7 +26,7 @@ const ProductPage = () => {
   }
 
   if (isError) {
-    return <Message variant='danger'>{getErrorMessage(error)}</Message>;
+    return <Message variant="danger">{getErrorMessage(error)}</Message>;
   }
 
   return (
@@ -43,12 +43,12 @@ const ProductPage = () => {
             <ProductPurchaseCard product={product} />
           </Col>
         </Row>
-        <Row className='review'>
+        <Row className="review">
           <Col md={6}>
             <ProductReviews product={product} />
           </Col>
           <Col md={6}>
-            <Button onClick={() => navigate(-1)} className='btn btn-light my-3'>
+            <Button onClick={() => navigate(-1)} className="btn btn-light my-3">
               Go Back
             </Button>
           </Col>

@@ -56,7 +56,7 @@ const PlaceOrderPage = () => {
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
@@ -64,7 +64,7 @@ const PlaceOrderPage = () => {
                 {cart.shippingAddress.city},{' '}
                 {cart.shippingAddress.streetAddress},{' '}
                 {cart.shippingAddress.postalCode}{' '}
-                <Button variant='link' onClick={handleEditShipping}>
+                <Button variant="link" onClick={handleEditShipping}>
                   Edit
                 </Button>
               </p>
@@ -76,7 +76,7 @@ const PlaceOrderPage = () => {
               {cart.paymentMethod}
               <Button
                 style={{ alignSelf: 'baseline' }}
-                variant='link'
+                variant="link"
                 onClick={handleEditPaymentMethod}
               >
                 Edit
@@ -87,10 +87,10 @@ const PlaceOrderPage = () => {
               <h2>Order Items:</h2>
               {cart.cartItems ? (
                 <>
-                  <ListGroup variant='flush'>
+                  <ListGroup variant="flush">
                     {cart.cartItems.map((item) => (
                       <ListGroup.Item key={item._id}>
-                        <Row className='justify-content-center align-items-center'>
+                        <Row className="justify-content-center align-items-center">
                           <Col md={1}>
                             <img src={item.image} width={50} height={50} />
                           </Col>
@@ -105,7 +105,7 @@ const PlaceOrderPage = () => {
                       </ListGroup.Item>
                     ))}
                   </ListGroup>
-                  <Button onClick={handleEditCart} variant='link'>
+                  <Button onClick={handleEditCart} variant="link">
                     Manage Cart
                   </Button>
                 </>
@@ -120,7 +120,7 @@ const PlaceOrderPage = () => {
         </Col>
         <Col md={4}>
           <Card>
-            <ListGroup variant='flush'>
+            <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
@@ -163,8 +163,8 @@ const PlaceOrderPage = () => {
 
               <ListGroup.Item>
                 <Button
-                  type='button'
-                  className='btn-block'
+                  type="button"
+                  className="btn-block"
                   disabled={!cart.cartItems.length}
                   onClick={handlePlaceOrder}
                 >

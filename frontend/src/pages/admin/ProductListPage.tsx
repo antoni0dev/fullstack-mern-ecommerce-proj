@@ -52,15 +52,15 @@ const ProductListPage = () => {
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message variant='danger'>{getErrorMessage(error)}</Message>
+    <Message variant="danger">{getErrorMessage(error)}</Message>
   ) : (
     <>
       <Row>
         <Col>
           <h1>Products</h1>
         </Col>
-        <Col className='text-right'>
-          <Button onClick={handleCreateProduct} className='btn-sm m-3'>
+        <Col className="text-right">
+          <Button onClick={handleCreateProduct} className="btn-sm m-3">
             {isCreateProductLoading ? (
               <Loader />
             ) : (
@@ -71,7 +71,7 @@ const ProductListPage = () => {
           </Button>
         </Col>
       </Row>
-      <Table striped hover responsive className='table-sm'>
+      <Table striped hover responsive className="table-sm">
         <thead>
           <tr>
             <th>ID</th>
@@ -92,13 +92,13 @@ const ProductListPage = () => {
               <td>{product.brand}</td>
               <td>
                 <LinkContainer to={`/edit-product/${product._id}`}>
-                  <Button variant='light' className='btn-sm'>
+                  <Button variant="light" className="btn-sm">
                     <FaEdit />
                   </Button>
                 </LinkContainer>
                 <Button
-                  variant='danger'
-                  className='btn-sm'
+                  variant="danger"
+                  className="btn-sm"
                   onClick={() => handleDeleteProduct(product._id)}
                 >
                   {isDeleteProductLoading ? (

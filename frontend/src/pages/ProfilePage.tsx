@@ -72,74 +72,74 @@ const ProfilePage = () => {
       <Col md={3}>
         <h2>User Profile</h2>
         <Form onSubmit={submitHandler}>
-          <Form.Group controlId='name' className='my-2'>
+          <Form.Group controlId="name" className="my-2">
             <Form.Label>Name</Form.Label>
             <Controller
-              name='name'
+              name="name"
               control={control}
               render={({ field }) => (
-                <Form.Control {...field} type='text' placeholder='Enter name' />
+                <Form.Control {...field} type="text" placeholder="Enter name" />
               )}
             />
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {errors.name?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId='email' className='my-2'>
+          <Form.Group controlId="email" className="my-2">
             <Form.Label>Email</Form.Label>
             <Controller
-              name='email'
+              name="email"
               control={control}
               render={({ field }) => (
                 <Form.Control
                   {...field}
-                  type='text'
-                  placeholder='Enter email'
+                  type="text"
+                  placeholder="Enter email"
                 />
               )}
             />
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {errors.email?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId='password' className='my-2'>
+          <Form.Group controlId="password" className="my-2">
             <Form.Label>Password</Form.Label>
             <Controller
-              name='password'
+              name="password"
               control={control}
               render={({ field }) => (
                 <Form.Control
                   {...field}
-                  type='password'
-                  placeholder='Enter password'
+                  type="password"
+                  placeholder="Enter password"
                 />
               )}
             />
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {errors.password?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId='confirmPassword' className='my-2'>
+          <Form.Group controlId="confirmPassword" className="my-2">
             <Form.Label>Confirm Password</Form.Label>
             <Controller
-              name='confirmPassword'
+              name="confirmPassword"
               control={control}
               render={({ field }) => (
                 <Form.Control
                   {...field}
-                  type='password'
-                  placeholder='Confirm password'
+                  type="password"
+                  placeholder="Confirm password"
                 />
               )}
             />
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {errors.confirmPassword?.message}
             </Form.Control.Feedback>
           </Form.Group>
           <Button
-            type='submit'
-            variant='primary'
-            className='my-2'
+            type="submit"
+            variant="primary"
+            className="my-2"
             disabled={
               !isDirty || !isValid || isLoading || isUpdateProfileLoading
             }
@@ -157,9 +157,9 @@ const ProfilePage = () => {
         {isGetMyOrdersLoading ? (
           <Loader />
         ) : error ? (
-          <Message variant='danger'>{getErrorMessage(error)}</Message>
+          <Message variant="danger">{getErrorMessage(error)}</Message>
         ) : (
-          <Table striped hover responsive className='table-sm'>
+          <Table striped hover responsive className="table-sm">
             <thead>
               <tr>
                 <th>ID</th>
@@ -192,7 +192,7 @@ const ProfilePage = () => {
                   </td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button className='btn-sm' variant='light'>
+                      <Button className="btn-sm" variant="light">
                         Details
                       </Button>
                     </LinkContainer>

@@ -41,83 +41,83 @@ const ShippingForm = () => {
 
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
-        <Form.Group className='my-2' controlId='country'>
+        <Form.Group className="my-2" controlId="country">
           <Form.Label>Country</Form.Label>
           <Controller
-            name='country'
+            name="country"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='text'
+                type="text"
                 {...field}
-                placeholder='Enter country'
+                placeholder="Enter country"
                 isInvalid={!!errors.country}
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.country?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className='my-2' controlId='streetAddress'>
+        <Form.Group className="my-2" controlId="streetAddress">
           <Form.Label>City</Form.Label>
           <Controller
-            name='city'
+            name="city"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='text'
+                type="text"
                 {...field}
-                placeholder='Enter city'
+                placeholder="Enter city"
                 isInvalid={!!errors.city}
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.city?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className='my-2' controlId='streetAddress'>
+        <Form.Group className="my-2" controlId="streetAddress">
           <Form.Label>Street Address</Form.Label>
           <Controller
-            name='streetAddress'
+            name="streetAddress"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='text'
+                type="text"
                 {...field}
-                placeholder='Enter street address'
+                placeholder="Enter street address"
                 isInvalid={!!errors.streetAddress}
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.streetAddress?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className='my-2' controlId='streetAddress'>
+        <Form.Group className="my-2" controlId="streetAddress">
           <Form.Label>Postal Code</Form.Label>
           <Controller
-            name='postalCode'
+            name="postalCode"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='text'
+                type="text"
                 {...field}
-                placeholder='Enter postal code'
+                placeholder="Enter postal code"
                 isInvalid={!!errors.postalCode}
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.postalCode?.message}
           </Form.Control.Feedback>
         </Form.Group>
         <Button
           disabled={!isDirty || !isValid}
-          type='submit'
-          variant='primary'
-          className='my-2'
+          type="submit"
+          variant="primary"
+          className="my-2"
         >
           Continue
         </Button>

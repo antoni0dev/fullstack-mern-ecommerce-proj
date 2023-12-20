@@ -26,7 +26,7 @@ const HomePage = () => {
       {isLoading ? (
         <Loader />
       ) : isError ? (
-        <Message variant='danger'>{getErrorMessage(error)}</Message>
+        <Message variant="danger">{getErrorMessage(error)}</Message>
       ) : (
         <>
           <Suspense
@@ -49,7 +49,7 @@ const HomePage = () => {
           </Row>
           <Paginate pages={pages} page={page} keyword={keyword} />
           {keyword && (
-            <Link to={PATHS.root} className='btn btn-light mb-4'>
+            <Link to={PATHS.root} className="btn btn-light mb-4">
               Go home
             </Link>
           )}

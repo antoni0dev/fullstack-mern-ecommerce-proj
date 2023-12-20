@@ -29,34 +29,34 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
+      <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
         <Container>
-          <LinkContainer to='/'>
+          <LinkContainer to="/">
             <Navbar.Brand>
-              <img src='/images/logo.png' />
+              <img src="/images/logo.png" />
               ProShop
             </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
               {userInfo ? (
                 <>
-                  <LinkContainer to='/cart'>
+                  <LinkContainer to="/cart">
                     <Nav.Link>
                       <FaShoppingCart /> Cart
                       {cartItems.length > 0 && (
-                        <Badge pill bg='danger' style={{ marginLeft: '5px' }}>
+                        <Badge pill bg="danger" style={{ marginLeft: '5px' }}>
                           {cartItems.reduce(
                             (acc, item) => acc + item.quantity,
-                            0
+                            0,
                           )}
                         </Badge>
                       )}
                     </Nav.Link>
                   </LinkContainer>
                   {userInfo?.isAdmin && (
-                    <NavDropdown title='Admin' id='adminmenu'>
+                    <NavDropdown title="Admin" id="adminmenu">
                       <LinkContainer to={PATHS.userList}>
                         <NavDropdown.Item>User List</NavDropdown.Item>
                       </LinkContainer>
@@ -68,7 +68,7 @@ const Header = () => {
                       </LinkContainer>
                     </NavDropdown>
                   )}
-                  <NavDropdown title={userInfo.name} id='username'>
+                  <NavDropdown title={userInfo.name} id="username">
                     <LinkContainer to={PATHS.profile}>
                       <NavDropdown.Item>Profile</NavDropdown.Item>
                     </LinkContainer>
@@ -78,7 +78,7 @@ const Header = () => {
                   </NavDropdown>
                 </>
               ) : (
-                <LinkContainer to='/login'>
+                <LinkContainer to="/login">
                   <Nav.Link>
                     <FaUser /> Sign in
                   </Nav.Link>

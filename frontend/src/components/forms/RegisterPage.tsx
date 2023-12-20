@@ -48,83 +48,83 @@ const RegisterForm = () => {
     <FormContainer>
       <h1>Sign up</h1>
       <Form onSubmit={submitHandler} noValidate>
-        <Form.Group className='my-3'>
+        <Form.Group className="my-3">
           <Form.Label>Name</Form.Label>
           <Controller
-            name='name'
+            name="name"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='text'
+                type="text"
                 {...field}
                 isInvalid={!!errors.name}
-                placeholder='Enter name'
+                placeholder="Enter name"
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.name?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className='my-3'>
+        <Form.Group className="my-3">
           <Form.Label>Email</Form.Label>
           <Controller
-            name='email'
+            name="email"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='email'
+                type="email"
                 {...field}
                 isInvalid={!!errors.email}
-                placeholder='Enter email'
+                placeholder="Enter email"
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.email?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className='my-3'>
+        <Form.Group className="my-3">
           <Form.Label>Password</Form.Label>
           <Controller
-            name='password'
+            name="password"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='password'
+                type="password"
                 {...field}
                 isInvalid={!!errors.password}
-                placeholder='Enter password'
+                placeholder="Enter password"
               ></Form.Control>
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.password?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className='my-3'>
+        <Form.Group className="my-3">
           <Form.Label>Confirm Password</Form.Label>
           <Controller
-            name='confirmPassword'
+            name="confirmPassword"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='password'
+                type="password"
                 {...field}
                 isInvalid={!!errors.confirmPassword}
-                placeholder='Confirm password'
+                placeholder="Confirm password"
               ></Form.Control>
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.confirmPassword?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Button type='submit' disabled={!isDirty || !isValid}>
+        <Button type="submit" disabled={!isDirty || !isValid}>
           {isValidating || isSubmitting || isLoading ? <Loader /> : 'Register'}
         </Button>
       </Form>
-      <Row className='py-3'>
+      <Row className="py-3">
         <Col>
           Already have an account? <Link to={PATHS.login}>Sign in</Link>
         </Col>

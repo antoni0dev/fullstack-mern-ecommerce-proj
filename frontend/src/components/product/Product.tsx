@@ -10,18 +10,18 @@ interface Props {
 
 const Product: FC<Props> = ({ product }) => {
   return (
-    <Card className='my-3 p-3 rounded'>
+    <Card className="my-3 p-3 rounded">
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant='top'></Card.Img>
+        <Card.Img src={product.image} variant="top"></Card.Img>
       </Link>
       <Card.Body>
         <Link to={`product/${product._id}`}>
-          <Card.Title className='product-title' as='div'>
+          <Card.Title className="product-title" as="div">
             <strong>{product.name}</strong>
           </Card.Title>
         </Link>
-        <Card.Text as='h3'>${product.price}</Card.Text>
-        <Card.Text as='div'>
+        <Card.Text as="h3">${product.price}</Card.Text>
+        <Card.Text as="div">
           <Rating
             value={product.rating}
             text={`${product.numReviews} reviews`}

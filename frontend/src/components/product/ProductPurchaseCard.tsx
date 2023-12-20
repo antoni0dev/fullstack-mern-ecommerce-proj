@@ -23,7 +23,7 @@ const ProductPurchaseCard: FC<Props> = ({ product }) => {
 
   return (
     <Card>
-      <ListGroup variant='flush'>
+      <ListGroup variant="flush">
         <ListGroup.Item>
           <Row>
             <Col>Price:</Col>
@@ -45,7 +45,7 @@ const ProductPurchaseCard: FC<Props> = ({ product }) => {
               <Col>Qty</Col>
               <Col>
                 <Form.Control
-                  as='select'
+                  as="select"
                   value={quantity}
                   onChange={(e) => setQuantity(+e.target.value)}
                 >
@@ -61,8 +61,8 @@ const ProductPurchaseCard: FC<Props> = ({ product }) => {
         )}
         <ListGroup.Item>
           <Button
-            className='btn-block'
-            type='button'
+            className="btn-block"
+            type="button"
             disabled={!product.countInStock}
             onClick={handleAddToCart}
           >

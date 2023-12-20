@@ -1,4 +1,4 @@
-import ShippingForm from "../components/forms/ShippingForm";
+import ShippingForm from '../components/forms/ShippingForm';
 
 const ShippingPage = () => {
   return <ShippingForm />;

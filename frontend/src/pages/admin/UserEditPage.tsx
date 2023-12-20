@@ -63,78 +63,78 @@ const UserEditPage = () => {
 
   return (
     <FormContainer>
-      <Button onClick={() => navigate(-1)} className='my-3'>
+      <Button onClick={() => navigate(-1)} className="my-3">
         Go back
       </Button>
       <h1>Edit User</h1>
       {isUserUpdatingLoading || isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{getErrorMessage(error)}</Message>
+        <Message variant="danger">{getErrorMessage(error)}</Message>
       ) : (
         <Form onSubmit={submitHandler}>
-          <Form.Group className='my-3'>
+          <Form.Group className="my-3">
             <Form.Label>Name</Form.Label>
             <Controller
               control={control}
-              name='name'
+              name="name"
               render={({ field }) => (
                 <Form.Control
                   {...field}
-                  type='text'
-                  placeholder='Enter name'
+                  type="text"
+                  placeholder="Enter name"
                   isInvalid={!!errors.name}
                 />
               )}
             />
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {errors.name?.message}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className='my-3'>
+          <Form.Group className="my-3">
             <Form.Label>Email</Form.Label>
             <Controller
               control={control}
-              name='email'
+              name="email"
               render={({ field }) => (
                 <Form.Control
                   {...field}
-                  type='text'
-                  placeholder='Enter email'
+                  type="text"
+                  placeholder="Enter email"
                   isInvalid={!!errors.email}
                   onChange={(e) => field.onChange(e.target.value)}
                 />
               )}
             />
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {errors.email?.message}
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className='my-3'>
+          <Form.Group className="my-3">
             <Controller
               control={control}
-              name='isAdmin'
+              name="isAdmin"
               render={({ field: { value, ...restField } }) => (
                 <Form.Check
-                  type='checkbox'
-                  label='Is Admin'
+                  type="checkbox"
+                  label="Is Admin"
                   checked={value}
                   {...restField}
                 ></Form.Check>
               )}
             />
 
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {errors.isAdmin?.message}
             </Form.Control.Feedback>
           </Form.Group>
 
           <Button
             disabled={!isValid}
-            type='submit'
-            variant='primary'
-            className='my-3'
+            type="submit"
+            variant="primary"
+            className="my-3"
           >
             {isUserUpdatingLoading ? <Loader /> : 'Update User'}
           </Button>

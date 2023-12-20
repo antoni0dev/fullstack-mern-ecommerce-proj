@@ -16,9 +16,9 @@ const OrderListPage = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{getErrorMessage(error)}</Message>
+        <Message variant="danger">{getErrorMessage(error)}</Message>
       ) : (
-        <Table striped hover responsive className='table-sm'>
+        <Table striped hover responsive className="table-sm">
           <thead>
             <tr>
               <th>ID</th>
@@ -51,7 +51,7 @@ const OrderListPage = () => {
                 </td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='light' className='btn-small'>
+                    <Button variant="light" className="btn-small">
                       Details
                     </Button>
                   </LinkContainer>

@@ -43,53 +43,53 @@ const LoginForm = () => {
     <FormContainer>
       <h1>Sign in</h1>
       <Form noValidate onSubmit={submitHandler}>
-        <Form.Group className='my-3'>
+        <Form.Group className="my-3">
           <Form.Label>Email</Form.Label>
           <Controller
-            name='email'
+            name="email"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='email'
+                type="email"
                 {...field}
                 isInvalid={!!errors.email}
-                placeholder='Enter email'
+                placeholder="Enter email"
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.email?.message}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className='my-3'>
+        <Form.Group className="my-3">
           <Form.Label>Password</Form.Label>
 
           <Controller
-            name='password'
+            name="password"
             control={control}
             render={({ field }) => (
               <Form.Control
-                type='password'
+                type="password"
                 {...field}
                 isInvalid={!!errors.password}
-                placeholder='Enter Password'
+                placeholder="Enter Password"
               />
             )}
           />
-          <Form.Control.Feedback type='invalid'>
+          <Form.Control.Feedback type="invalid">
             {errors.password?.message}
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          type='submit'
-          variant='primary'
-          className='mt-2'
+          type="submit"
+          variant="primary"
+          className="mt-2"
           disabled={!isDirty || !isValid || isSubmitting}
         >
           {isLoading ? <Loader /> : 'Sign in'}
         </Button>
       </Form>
-      <Row className='py-3'>
+      <Row className="py-3">
         <Col>
           New Customer? <Link to={PATHS.register}>Register</Link>
         </Col>

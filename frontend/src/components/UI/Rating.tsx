@@ -9,7 +9,7 @@ interface Props {
 
 const Rating: FC<Props> = ({ value, text = '' }) => {
   return (
-    <div className='rating'>
+    <div className="rating">
       <span>
         {value >= 1 ? (
           <FaStar />
@@ -55,7 +55,7 @@ const Rating: FC<Props> = ({ value, text = '' }) => {
           <FaRegStar />
         )}
       </span>
-      <span className='rating-text'>{text}</span>
+      <span className="rating-text">{text}</span>
     </div>
   );
 };

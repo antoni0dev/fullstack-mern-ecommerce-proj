@@ -22,7 +22,7 @@ const ProductReviews: FC<Props> = ({ product }) => {
       <h1>Reviews</h1>
       {product.numReviews === 0 && <Message>No reviews</Message>}
       {product.numReviews > 0 && (
-        <ListGroup variant='flush'>
+        <ListGroup variant="flush">
           {product.reviews?.map((review) => (
             <ListGroup.Item key={review._id}>
               <strong>{review.name}</strong>
@@ -31,7 +31,7 @@ const ProductReviews: FC<Props> = ({ product }) => {
               <p>{review.comment}</p>
             </ListGroup.Item>
           ))}
-          <ListGroup.Item className='p-0'>
+          <ListGroup.Item className="p-0">
             {userInfo ? (
               <ProductReviewForm />
             ) : (

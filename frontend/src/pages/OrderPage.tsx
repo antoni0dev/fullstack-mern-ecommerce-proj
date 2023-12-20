@@ -81,7 +81,7 @@ const OrderPage = () => {
 
   const onApprove = async (
     _: any,
-    actions: OnApproveActions
+    actions: OnApproveActions,
   ): Promise<void> => {
     if (actions.order) {
       const details = await actions.order.capture();
@@ -125,7 +125,7 @@ const OrderPage = () => {
   return isLoading ? (
     <Loader />
   ) : isError ? (
-    <Message variant='danger'>{getErrorMessage(error)}</Message>
+    <Message variant="danger">{getErrorMessage(error)}</Message>
   ) : (
     order && (
       <>
@@ -147,11 +147,11 @@ const OrderPage = () => {
                   {order.shippingAddress.city}
                 </p>
                 {order.isDelivered ? (
-                  <Message variant='success'>
+                  <Message variant="success">
                     Delivered on {order.deliveredAt}
                   </Message>
                 ) : (
-                  <Message variant='danger'>Not Delivered</Message>
+                  <Message variant="danger">Not Delivered</Message>
                 )}
               </ListGroup.Item>
 
@@ -162,12 +162,12 @@ const OrderPage = () => {
                   {order.paymentMethod}
                 </p>
                 {order.isPaid ? (
-                  <Message variant='success'>
+                  <Message variant="success">
                     The order has been paid using {order.paymentMethod} at{' '}
                     {order.paidAt}
                   </Message>
                 ) : (
-                  <Message variant='danger'>Not paid yet</Message>
+                  <Message variant="danger">Not paid yet</Message>
                 )}
               </ListGroup.Item>
 
@@ -236,8 +236,8 @@ const OrderPage = () => {
                 {userInfo?.isAdmin && order.isPaid && !order.isDelivered && (
                   <ListGroupItem>
                     <Button
-                      type='button'
-                      className='btn btn-block'
+                      type="button"
+                      className="btn btn-block"
                       onClick={() => deliverOrderHandler(orderId || '')}
                     >
                       Mark as Delivered

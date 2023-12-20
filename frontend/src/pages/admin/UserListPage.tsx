@@ -28,7 +28,7 @@ const UserListPage = () => {
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message variant='danger'>{getErrorMessage(error)}</Message>
+    <Message variant="danger">{getErrorMessage(error)}</Message>
   ) : (
     <>
       <Row>
@@ -36,7 +36,7 @@ const UserListPage = () => {
           <h1>Users</h1>
         </Col>
       </Row>
-      <Table striped hover responsive className='table-sm'>
+      <Table striped hover responsive className="table-sm">
         <thead>
           <tr>
             <th>ID</th>
@@ -65,13 +65,13 @@ const UserListPage = () => {
                 </td>
                 <td>
                   <LinkContainer to={`/edit-user/${user._id}`}>
-                    <Button variant='light' className='btn-sm'>
+                    <Button variant="light" className="btn-sm">
                       <FaEdit />
                     </Button>
                   </LinkContainer>
                   <Button
-                    variant='danger'
-                    className='btn-sm'
+                    variant="danger"
+                    className="btn-sm"
                     onClick={() => deleteUserHandler(user._id)}
                   >
                     {deleteUserLoading ? (

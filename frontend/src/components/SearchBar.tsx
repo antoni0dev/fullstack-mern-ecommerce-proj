@@ -21,16 +21,16 @@ const SearchBar = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className='d-flex'>
+    <Form onSubmit={handleSubmit} className="d-flex">
       <Form.Control
-        type='text'
-        name='search'
+        type="text"
+        name="search"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        placeholder='Search products...'
-        className='mr-sm-2 ml-sm-5'
+        placeholder="Search products..."
+        className="mr-sm-2 ml-sm-5"
       />
-      <Button type='submit' variant='outline border' className='p-2 mx-2'>
+      <Button type="submit" variant="outline border" className="p-2 mx-2">
         Search
       </Button>
     </Form>

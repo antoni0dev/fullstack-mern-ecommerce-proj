@@ -1,17 +1,17 @@
-import { Spinner } from "react-bootstrap";
+import { Spinner } from 'react-bootstrap';
 
 const Loader = () => {
   return (
     <Spinner
-      animation='border'
-      role='status'
-      variant='dark'
+      animation="border"
+      role="status"
+      variant="dark"
       style={{
-        display: "block",
-        margin: "auto",
+        display: 'block',
+        margin: 'auto',
       }}
     >
-      <span className='visually-hidden'>Loading...</span>
+      <span className="visually-hidden">Loading...</span>
     </Spinner>
   );
 };

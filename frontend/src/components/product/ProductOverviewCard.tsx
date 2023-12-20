@@ -9,7 +9,7 @@ interface Props {
 
 const ProductOverviewCard: FC<Props> = ({ product }) => {
   return (
-    <ListGroup variant='flush'>
+    <ListGroup variant="flush">
       <ListGroup.Item>
         <h3>{product.name}</h3>
       </ListGroup.Item>

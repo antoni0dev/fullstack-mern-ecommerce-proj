@@ -28,7 +28,7 @@ const CartPage = () => {
   if (cartItems.length === 0) {
     return (
       <Message>
-        Empty cart, <Link to='/'>go back</Link>
+        Empty cart, <Link to="/">go back</Link>
       </Message>
     );
   }
@@ -51,7 +51,7 @@ const CartPage = () => {
     <Row>
       <Col md={8}>
         <h1 style={{ marginBottom: '20px' }}>Shopping Cart</h1>
-        <ListGroup variant='flush'>
+        <ListGroup variant="flush">
           {cartItems.map((item) => (
             <ListGroup.Item key={item._id}>
               <Row>
@@ -64,7 +64,7 @@ const CartPage = () => {
                 <Col md={2}>${item.price}</Col>
                 <Col md={2}>
                   <Form.Control
-                    as='select'
+                    as="select"
                     value={item.quantity}
                     onChange={addToCartHandler(item)}
                   >
@@ -77,8 +77,8 @@ const CartPage = () => {
                 </Col>
                 <Col md={2}>
                   <Button
-                    type='button'
-                    variant='white'
+                    type="button"
+                    variant="white"
                     onClick={() => removeFromCartHandler(item._id)}
                   >
                     <FaTrash />
@@ -91,7 +91,7 @@ const CartPage = () => {
       </Col>
       <Col md={4}>
         <Card>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>
                 Subtotal (
@@ -105,8 +105,8 @@ const CartPage = () => {
             <ListGroup.Item>
               {/* TODO: Handle proceed to checkout */}
               <Button
-                type='button'
-                className='btn-block'
+                type="button"
+                className="btn-block"
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
