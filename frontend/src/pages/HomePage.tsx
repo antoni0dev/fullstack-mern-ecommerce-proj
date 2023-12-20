@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/product/Product';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
