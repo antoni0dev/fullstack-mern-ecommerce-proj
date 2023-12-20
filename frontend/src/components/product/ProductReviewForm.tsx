@@ -2,7 +2,10 @@ import { FormEvent, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { getErrorMessage } from '../../lib/utils';
-import { useCreateReviewMutation } from '../../slices/productsApiSlice';
+import {
+  useCreateReviewMutation,
+  useGetProductDetailsQuery,
+} from '../../slices/productsApiSlice';
 import { useParams } from 'react-router-dom';
 import Loader from '../UI/Loader';
 
@@ -12,12 +15,16 @@ const ProductReviewForm = () => {
 
   const { productId } = useParams();
   const [createReview, { isLoading }] = useCreateReviewMutation();
+  const { refetch: refetchProductDetails } = useGetProductDetailsQuery(
+    String(productId)
+  );
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       await createReview({ productId, rating, comment }).unwrap();
+      refetchProductDetails();
       setComment('');
       setRating('');
       toast.success('Review submitted');

@@ -61,7 +61,7 @@ export interface OrderType {
 }
 
 export interface CartItem extends ProductType {
-  qty: number;
+  quantity: number;
 }
 
 export interface Cart {

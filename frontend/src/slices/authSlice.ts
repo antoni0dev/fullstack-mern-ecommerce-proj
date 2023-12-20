@@ -23,7 +23,7 @@ const authSlice = createSlice({
     },
     clearCredentials: (state) => {
       state.userInfo = null;
-      localStorage.removeItem('userInfo');
+      localStorage.clear();
     },
   },
 });

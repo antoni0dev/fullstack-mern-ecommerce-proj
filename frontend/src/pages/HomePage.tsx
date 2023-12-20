@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/product/Product';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
@@ -6,9 +7,9 @@ import Message from '../components/UI/Message';
 import { getErrorMessage } from '../lib/utils';
 import { Link, useParams } from 'react-router-dom';
 import Paginate from '../components/Paginate';
-import ProductCarrousel from '../components/product/ProductCarousel';
 import SearchBar from '../components/SearchBar';
 import { PATHS } from '../lib/constants';
+import ProductCarousel from '../components/product/ProductCarousel';
 
 const HomePage = () => {
   const { pageNumber = 1, keyword = '' } = useParams();
@@ -28,7 +29,15 @@ const HomePage = () => {
         <Message variant='danger'>{getErrorMessage(error)}</Message>
       ) : (
         <>
-          {!keyword && <ProductCarrousel />}
+          <Suspense
+            fallback={
+              <div style={{ minHeight: '1000px' }}>
+                <Loader />
+              </div>
+            }
+          >
+            {!keyword && <ProductCarousel />}
+          </Suspense>
           <h1>Latest Products</h1>
           <SearchBar />
           <Row>
