@@ -1,7 +1,6 @@
 import { Badge, Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
-import logo from '/images/logo.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../../slices/usersApiSlice';
 import Loader from './Loader';
@@ -34,7 +33,7 @@ const Header = () => {
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>
-              <img src={logo} />
+              <img src='/images/logo.png' />
               ProShop
             </Navbar.Brand>
           </LinkContainer>
