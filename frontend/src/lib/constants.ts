@@ -1,4 +1,5 @@
-export const BASE_URL = process.env.NODE_ENV === 'development' ? '/' : '';
+export const BASE_URL =
+  import.meta.env.VITE_NODE_ENV === 'development' ? '/' : '';
 export const PRODUCTS_URL = '/api/products';
 export const USERS_URL = '/api/users';
 export const ORDERS_URL = '/api/orders';
@@ -43,5 +44,5 @@ export enum CartField {
 }
 
 export const SCRIPT_PROVIDER_OPTIONS = {
-  clientId: import.meta.env.PAYPAL_CLIENT_ID || '',
+  clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || '',
 };
