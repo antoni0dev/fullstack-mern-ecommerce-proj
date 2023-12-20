@@ -11,7 +11,6 @@ import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 
 const port = process.env.PORT || 8000;
-
 connectDB(); // connect to MongoDB
 
 // initialize express
@@ -22,12 +21,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const __dirname = path.resolve();
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
-// create our first route
+// API routes
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/upload', uploadRoutes);
+
+// PayPal Config route
+app.get('/api/config/paypal', (req, res) =>
+  res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
+);
+
+// Serve Static Files and React Build for Production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/frontend/build')));
-
   app.get('*', (req, res) =>
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
   );
@@ -37,31 +45,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use('/api/users', userRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/upload', uploadRoutes);
+// Uploads directory
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
-app.get('/api/config/paypal', (req, res) =>
-  res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
-);
-
-if (process.env.NODE_ENV === 'production') {
-  const __dirname = path.resolve();
-  app.use('/uploads', express.static('/var/data/uploads'));
-  app.use(express.static(path.join(__dirname, '/frontend/build')));
-
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-  );
-} else {
-  const __dirname = path.resolve();
-  app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-  app.get('/', (req, res) => {
-    res.send('API is running....');
-  }); 
-}
-
+// Error handling middleware
 app.use(notFound); // 404 error handler
 app.use(errorHandler); // 500 error handler
 
