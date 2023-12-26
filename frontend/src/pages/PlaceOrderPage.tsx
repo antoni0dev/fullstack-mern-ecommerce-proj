@@ -38,7 +38,7 @@ const PlaceOrderPage = () => {
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
+        itemsPrice: Number(cart.itemsPrice),
         shippingPrice: cart.shippingPrice,
         totalPrice: cart.totalPrice,
         taxPrice: cart.taxPrice,
@@ -47,6 +47,7 @@ const PlaceOrderPage = () => {
       dispatch(clearField(CartField.All));
       navigate(`/order/${res._id}`);
     } catch (error) {
+      console.log('error', error);
       toast.error(getErrorMessage(error));
     }
   };
@@ -98,8 +99,8 @@ const PlaceOrderPage = () => {
                             <Link to={`/product/${item._id}`}>{item.name}</Link>
                           </Col>
                           <Col md={4}>
-                            {item.quantity} x {item.price} = $
-                            {(item.quantity * item.price).toFixed(2)}
+                            {item.qty} x {item.price} = $
+                            {(item.qty * item.price).toFixed(2)}
                           </Col>
                         </Row>
                       </ListGroup.Item>

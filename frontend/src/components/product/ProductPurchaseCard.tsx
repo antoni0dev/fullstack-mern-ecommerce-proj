@@ -11,13 +11,14 @@ interface Props {
 }
 
 const ProductPurchaseCard: FC<Props> = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(qty);
   const handleAddToCart = () => {
-    dispatch(addItemToCart({ ...product, quantity }));
+    dispatch(addItemToCart({ ...product, qty }));
     navigate(PATHS.cart);
   };
 
@@ -46,8 +47,8 @@ const ProductPurchaseCard: FC<Props> = ({ product }) => {
               <Col>
                 <Form.Control
                   as="select"
-                  value={quantity}
-                  onChange={(e) => setQuantity(+e.target.value)}
+                  value={qty}
+                  onChange={(e) => setQty(+e.target.value)}
                 >
                   {[...Array(product.countInStock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>

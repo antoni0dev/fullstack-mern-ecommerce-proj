@@ -13,6 +13,7 @@ import { clearField, selectCart } from '../../slices/cartSlice';
 const Header = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector(selectCart);
+  console.log(cartItems);
   const userInfo = useSelector(selectUserInfo);
   const [logout, { isLoading }] = useLogoutMutation();
 
@@ -47,10 +48,7 @@ const Header = () => {
                       <FaShoppingCart /> Cart
                       {cartItems.length > 0 && (
                         <Badge pill bg="danger" style={{ marginLeft: '5px' }}>
-                          {cartItems.reduce(
-                            (acc, item) => acc + item.quantity,
-                            0,
-                          )}
+                          {cartItems.reduce((acc, item) => acc + item.qty, 0)}
                         </Badge>
                       )}
                     </Nav.Link>

@@ -8,7 +8,7 @@ const ordersApiSlice = apiSlice.injectEndpoints({
       query: (order) => ({
         url: ORDERS_URL,
         method: 'POST',
-        body: { ...order },
+        body: order,
       }),
     }),
     getOrder: builder.query<OrderType, string>({
